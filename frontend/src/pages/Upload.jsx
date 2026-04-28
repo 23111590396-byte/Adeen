@@ -8,9 +8,12 @@ const MAX_VIDEO_MB = 50
 const MIN_VIDEO_MB = 30
 
 function getYouTubeEmbedUrl(url) {
-  if (!url) return null
+  if (!url || typeof url !== 'string') return null
   const match = url.match(/(?:youtu\.be\/|v=|\/embed\/)([A-Za-z0-9_-]{11})/)
-  return match ? `https://www.youtube.com/embed/${match[1]}` : null
+  if (!match) return null
+  // Construct a safe, hard-coded YouTube embed URL using only the validated video ID
+  const videoId = match[1]
+  return `https://www.youtube.com/embed/${videoId}`
 }
 
 export default function Upload() {

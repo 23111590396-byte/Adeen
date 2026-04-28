@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useSwipeNav } from '../hooks/useSwipeNav'
 
 export default function SwipeContainer({ currentPage, children, className = '' }) {

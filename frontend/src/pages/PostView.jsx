@@ -71,9 +71,10 @@ export default function PostView() {
 
   const embedUrl = (() => {
     const url = post.metadata?.youtube_url
-    if (!url) return null
+    if (!url || typeof url !== 'string') return null
     const match = url.match(/(?:youtu\.be\/|v=|\/embed\/)([A-Za-z0-9_-]{11})/)
-    return match ? `https://www.youtube.com/embed/${match[1]}` : null
+    if (!match) return null
+    return `https://www.youtube.com/embed/${match[1]}`
   })()
 
   return (
