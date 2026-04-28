@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbars globally */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Prevent default touch behaviors on the app */
+body {
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Full-screen page */
+.page-full {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Scrollable container with hidden scrollbar */
+.scroll-hide {
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions */
+.transition-fast {
+  transition: all 0.15s ease-out;
+}
+.transition-med {
+  transition: all 0.3s ease-out;
+}
+
+/* Heart animation overlay */
+@keyframes heartPop {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+  30%  { transform: scale(1.5) rotate(5deg);  opacity: 1; }
+  60%  { transform: scale(1.1) rotate(-3deg); opacity: 1; }
+  100% { transform: scale(1.3) rotate(0deg);  opacity: 0; }
+}
+.heart-pop {
+  animation: heartPop 0.7s ease-in-out forwards;
+}
+
+/* Pinch zoom container */
+.pinch-zoom-container {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bottom nav safe area */
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
