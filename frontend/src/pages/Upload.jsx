@@ -11,8 +11,8 @@ function getYouTubeEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null
   const match = url.match(/(?:youtu\.be\/|v=|\/embed\/)([A-Za-z0-9_-]{11})/)
   if (!match) return null
-  // Construct a safe, hard-coded YouTube embed URL using only the validated video ID
-  const videoId = match[1]
+  // Construct a safe embed URL using only the validated, encoded video ID
+  const videoId = encodeURIComponent(match[1])
   return `https://www.youtube.com/embed/${videoId}`
 }
 
@@ -35,7 +35,7 @@ export default function Upload() {
     const mb = f.size / 1024 / 1024
     if (f.type.startsWith('image/')) {
       if (mb < MIN_IMAGE_MB) {
-        setError(`Image must be at least ${MIN_IMAGE_MB}MB (got ${mb.toFixed(1)}MB). Upload a higher-quality image.`)
+        setError(`Image file size is below the minimum required size of ${MIN_IMAGE_MB}MB (got ${mb.toFixed(1)}MB).`)
         return false
       }
       if (mb > MAX_IMAGE_MB) {

@@ -68,6 +68,10 @@ const MOCK_POSTS = [
 
 const USE_MOCK = !import.meta.env.VITE_API_URL
 
+if (USE_MOCK) {
+  console.warn('[Adeen] VITE_API_URL is not set — running in mock mode with sample data.')
+}
+
 function withMockFallback(fn, mockResult) {
   if (USE_MOCK) return Promise.resolve(mockResult)
   return fn()

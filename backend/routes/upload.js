@@ -7,10 +7,10 @@ import supabase from '../lib/supabase.js'
 
 const router = express.Router()
 
-// Store in memory buffer (max 55MB)
+// Store in memory buffer (max 60MB — provides a safety margin above the 50MB frontend limit)
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 55 * 1024 * 1024 },
+  limits: { fileSize: 60 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm', 'video/quicktime']
     if (allowed.includes(file.mimetype)) {
